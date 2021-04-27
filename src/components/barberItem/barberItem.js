@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 export default class BarberItem extends Component {
     render() {
         return (
-            <div>BarberItem</div>
+            <div>{this.props.name}</div>
         )
     }
 }

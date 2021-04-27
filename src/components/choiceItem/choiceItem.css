@@ -1,0 +1,10 @@
+.container-choiceitem {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-choiceitem {
+    flex-basis: 85%;
+}

@@ -1,6 +1,7 @@
 ## Stack:
-React
-Json-server
+React.\
+React-router-dom.\
+Json-server.\
 
 # Getting Started with Create React App
 
