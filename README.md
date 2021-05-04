@@ -1,7 +1,11 @@
 ## Stack:
 React.\
 React-router-dom.\
+Redux.\
+React-redux.\
 Json-server.\
+React-calendar.\
+Materialize CSS.\
 
 # Getting Started with Create React App
 

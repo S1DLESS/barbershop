@@ -16,6 +16,14 @@ class AppointmentMainPage extends Component {
             }
         }
 
+        const checkService = () => {
+            if (this.props.service !== null) {
+                return this.props.service.serviceTitle
+            } else {
+                return ""
+            }
+        }
+
         return (
             <div className="container">
                 <div className="center-align">Онлайн-запись</div>
@@ -23,7 +31,7 @@ class AppointmentMainPage extends Component {
                     <ChoiceItem icon={"people"} title={"Барбер"} descr={checkBarber()}/>
                 </Link>
                 <Link to="/appointment/service">
-                    <ChoiceItem icon={"content_cut"} title={"Услуга"} descr={''}/>
+                    <ChoiceItem icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
                 </Link>
                 <Link to="/appointment/date">
                     <ChoiceItem icon={"date_range"} title={"Дата и время"} descr={''}/>
@@ -36,7 +44,8 @@ class AppointmentMainPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        barber: state.selectedBarber
+        barber: state.selectedBarber,
+        service: state.selectedService
     }
 }
 

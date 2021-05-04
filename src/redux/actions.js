@@ -5,9 +5,9 @@ export function addBarberId(barberId, barberName) {
     }
 }
 
-export function addServiceId(serviceId) {
+export function addServiceId(serviceId, serviceTitle) {
     return {
         type: 'ADD_SERVICE_ID',
-        payload: serviceId
+        payload: {serviceId, serviceTitle}
     }
 }

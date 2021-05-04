@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DB from '../../../service/service';
-import {addBarberId} from '../../../redux/actions';
+import {addServiceId} from '../../../redux/actions';
 
 
-class AppointmentBarberPage extends Component {
+class AppointmentServicePage extends Component {
 
-    db = new DB();
+    db = new DB()
     state = {
-        barberList: null
+        serviceList: null
     }
 
     componentDidMount() {
-        this.db.getAllBarbers()
-            .then(barberList => this.setState({barberList}));
+        this.db.getAllServices()
+            .then(serviceList => this.setState({serviceList}));
     }
 
     renderItems(arr) {
@@ -25,18 +25,17 @@ class AppointmentBarberPage extends Component {
                         <Link to='/appointment' key={value.id}>
                             <li className="collection-item"
                                 key={value.id}
-                                onClick={() => this.props.addBarberId(value.id, value.name)}>{value.name}</li>
+                                onClick={() => this.props.addServiceId(value.id, value.title)}>{value.title}</li>
                         </Link>
                     )
                 })
             )
         }
     }
-
     render() {
-        const {barberList} = this.state;
+        const {serviceList} = this.state;
 
-        if (!barberList) {
+        if (!serviceList) {
             return (
                 <div class="progress">
                     <div class="indeterminate"></div>
@@ -46,14 +45,14 @@ class AppointmentBarberPage extends Component {
 
         return (
             <ul className="collection">
-                {this.renderItems(barberList)}
+                {this.renderItems(serviceList)}
             </ul>
         )
     }
 }
 
 const mapDispatchToProps = {
-    addBarberId
+    addServiceId
 }
 
-export default connect(null, mapDispatchToProps)(AppointmentBarberPage)
+export default connect(null, mapDispatchToProps)(AppointmentServicePage)
