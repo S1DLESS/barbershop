@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DB from '../../../service/service';
+import {addBarberId} from '../../../redux/actions';
 
 
-export default class AppointmentBarberPage extends Component {
+class AppointmentBarberPage extends Component {
 
     db = new DB();
     state = {
@@ -22,7 +24,7 @@ export default class AppointmentBarberPage extends Component {
                     return (
                         <Link to='/appointment' key={value.id}>
                             <li key={value.id}
-                                onClick={() => this.props.selectedBarber(value.id)}>{value.name}</li>
+                                onClick={() => this.props.addBarberId(value.id, value.name)}>{value.name}</li>
                         </Link>
                     )
                 })
@@ -46,3 +48,9 @@ export default class AppointmentBarberPage extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    addBarberId
+}
+
+export default connect(null, mapDispatchToProps)(AppointmentBarberPage)

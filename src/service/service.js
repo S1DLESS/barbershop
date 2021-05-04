@@ -17,8 +17,10 @@ export default class DB {
     }
 
     getBarber = async (id) => {
-        const barber = await this.getData(`/barbers/${id}`);
-        return this._transformBarber(barber);
+        if (id !== null) {
+            const barber = await this.getData(`/barbers/${id}`);
+            return this._transformBarber(barber);
+        }
     }
 
     getAllServices = async () => {
@@ -27,12 +29,10 @@ export default class DB {
     }
 
     getService = async (id) => {
-        const service = await this.getData(`/services/${id}`);
-        return this._transformService(service);
-    }
-
-    eee = () => {
-        return "done";
+        if (id !== null) {
+            const service = await this.getData(`/services/${id}`);
+            return this._transformService(service);
+        }
     }
 
     _transformBarber(barber) {
