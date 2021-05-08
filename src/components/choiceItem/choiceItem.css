@@ -5,6 +5,21 @@
     align-items: center;
 }
 
-.text-choiceitem {
-    flex-basis: 85%;
+.container-left-choiceitem {
+    color: #5c5c5c;
+    display: flex;
+    align-items: center;
+    flex-basis: 90%;
+}
+
+.container-left-choiceitem div:first-child {
+    margin-right: 15px;
+}
+
+.del-btn-choiceitem {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }

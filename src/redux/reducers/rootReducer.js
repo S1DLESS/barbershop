@@ -1,7 +1,7 @@
 const initialState = {
     selectedBarber: null,
     selectedService: null,
-    selectedDate: ""
+    selectedDate: ''
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -10,6 +10,8 @@ const rootReducer = (state = initialState, action) => {
             return {...state, selectedBarber: action.payload}
         case "ADD_SERVICE_ID":
             return {...state, selectedService: action.payload}
+        case "ADD_DATE":
+            return {...state, selectedDate: action.payload}
         default: return state
     }
 }

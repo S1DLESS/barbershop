@@ -24,18 +24,50 @@ class AppointmentMainPage extends Component {
             }
         }
 
+        const checkDate = () => {
+            let day = new Date(this.props.date).getDate(),
+                month = new Date(this.props.date).getMonth(),
+                year = new Date(this.props.date).getFullYear(),
+                hours = new Date(this.props.date).getHours(),
+                minutes = new Date(this.props.date).getMinutes();
+
+            if (day < 10) {
+                day = `0${day}`
+            }
+                  
+            if (minutes < 10) {
+                minutes = `0${minutes}`
+            }
+
+            switch (month) {
+                case 1: month = 'января'; break
+                case 2: month = 'февраля'; break
+                case 3: month = 'марта'; break
+                case 4: month = 'апреля'; break
+                case 5: month = 'мая'; break
+                case 6: month = 'июня'; break
+                case 7: month = 'июля'; break
+                case 8: month = 'августа'; break
+                case 9: month = 'сентября'; break
+                case 10: month = 'октября'; break
+                case 11: month = 'ноября'; break
+                case 12: month = 'декабря'; break
+                default: month = ''
+            }
+
+            if (this.props.date !== "") {
+                return `${day} ${month} ${year} в ${hours}:${minutes}`
+            } else {
+                return ""
+            }
+        }
+
         return (
             <div className="container">
                 <div className="center-align">Онлайн-запись</div>
-                <Link to="/appointment/barber">
-                    <ChoiceItem icon={"people"} title={"Барбер"} descr={checkBarber()}/>
-                </Link>
-                <Link to="/appointment/service">
-                    <ChoiceItem icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
-                </Link>
-                <Link to="/appointment/date">
-                    <ChoiceItem icon={"date_range"} title={"Дата и время"} descr={''}/>
-                </Link>
+                    <ChoiceItem url={"barber"} icon={"people"} title={"Барбер"} descr={checkBarber()}/>
+                    <ChoiceItem url={"service"} icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
+                    <ChoiceItem url={"date"} icon={"date_range"} title={"Дата и время"} descr={checkDate()}/>
                 <button className="btn">Оформить визит</button>
             </div>
         )
@@ -45,7 +77,8 @@ class AppointmentMainPage extends Component {
 const mapStateToProps = state => {
     return {
         barber: state.selectedBarber,
-        service: state.selectedService
+        service: state.selectedService,
+        date: state.selectedDate
     }
 }
 

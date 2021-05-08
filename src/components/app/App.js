@@ -4,6 +4,7 @@ import AppointmentBarberPage from '../pages/appointmentBarberPage/appointmentBar
 import AppointmentMainPage from '../pages/appointmentMainPage/appointmentMainPage';
 import AppointmentServicePage from '../pages/appointmentServicePage/appointmentServicePage';
 import AppointmentDatePage from '../pages/appointmentDatePage/appointmentDatePage';
+import AppointmentTimePage from '../pages/appointmentTimePage/appointmentTimePage';
 import HomePage from '../pages/homePage/homePage';
 import './App.css';
 
@@ -18,6 +19,7 @@ export default function App() {
             <Route path='/appointment/barber' component={AppointmentBarberPage}></Route>
             <Route path='/appointment/service' component={AppointmentServicePage}></Route>
             <Route path='/appointment/date' component={AppointmentDatePage}></Route>
+            <Route path='/appointment/time' component={AppointmentTimePage}></Route>
         </Router>
     );
 }

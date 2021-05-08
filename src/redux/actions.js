@@ -11,3 +11,10 @@ export function addServiceId(serviceId, serviceTitle) {
         payload: {serviceId, serviceTitle}
     }
 }
+
+export function addDate(date) {
+    return {
+        type: 'ADD_DATE',
+        payload: date
+    }
+}
