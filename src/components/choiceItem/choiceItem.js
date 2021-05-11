@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import {deleteBarber, deleteService, deleteDate} from '../../redux/actions';
 import './choiceItem.css';
 
-export default class ChoiceItem extends Component {
+class ChoiceItem extends Component {
+
+    actionDeleteButton() {
+        switch (this.props.url) {
+            case 'barber': this.props.deleteBarber(); break
+            case 'service': this.props.deleteService(); break
+            case 'date': this.props.deleteDate(); break
+            default: return
+        }
+    }
 
     renderDeleteButton() {
         if (this.props.descr) {
             return (
-                <button className="del-btn-choiceitem">
+                <button className="del-btn-choiceitem"
+                        onClick={() => this.actionDeleteButton()}>
                     <i className="material-icons">do_not_disturb_on</i>
                 </button>
             )
@@ -32,13 +44,10 @@ export default class ChoiceItem extends Component {
     }
 }
 
-/*
-Состояние 1: без стэйта
-    Кнопки минуса нет
-    Доп.инфы нет
-    Цвет серый
-Состояние 2: со стэйтом
-    Кнопка минус есть
-    Доп.инфа - со стэйта
-    Цвет синий (активный)
-*/
+const mapDispatchToProps = {
+    deleteBarber,
+    deleteService,
+    deleteDate
+}
+
+export default connect(null, mapDispatchToProps)(ChoiceItem)

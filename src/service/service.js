@@ -3,6 +3,17 @@ export default class DB {
         this._apiBase = 'http://localhost:3000';
     }
 
+    postData = async (data) => {
+        const res = await fetch(`${this._apiBase}/requests`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        return res
+    }
+
     getData = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
         if (!res.ok) {

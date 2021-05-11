@@ -6,6 +6,16 @@ import './appointmentMainPage.css';
 
 class AppointmentMainPage extends Component {
     
+    renderInitButton() {
+        if (this.props.barber && this.props.service && this.props.date) {
+            return (
+                <Link to='/appointment/order'>
+                    <button className="btn">Оформить визит</button>
+                </Link>
+            )
+        }
+    }
+
     render() {
 
         const checkBarber = () => {
@@ -68,7 +78,7 @@ class AppointmentMainPage extends Component {
                     <ChoiceItem url={"barber"} icon={"people"} title={"Барбер"} descr={checkBarber()}/>
                     <ChoiceItem url={"service"} icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
                     <ChoiceItem url={"date"} icon={"date_range"} title={"Дата и время"} descr={checkDate()}/>
-                <button className="btn">Оформить визит</button>
+                {this.renderInitButton()}
             </div>
         )
     }

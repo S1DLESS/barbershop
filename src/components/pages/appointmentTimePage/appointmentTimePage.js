@@ -9,9 +9,9 @@ function TimePage(props) {
     for (let i = 9; i <= 20; i++) {
         arr.push(
             <Link to='/appointment' key={i}>
-                <a className='btn'
-                   key={i}
-                   onClick={() => props.addDate(props.date.setHours(i))}>{i}:00</a>
+                <button className='btn'
+                        key={i}
+                        onClick={() => props.addDate(props.date.setHours(i))}>{i}:00</button>
             </Link>
         )
     }

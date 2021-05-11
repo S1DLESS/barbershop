@@ -25,7 +25,7 @@ class AppointmentServicePage extends Component {
                         <Link to='/appointment' key={value.id}>
                             <li className="collection-item"
                                 key={value.id}
-                                onClick={() => this.props.addServiceId(value.id, value.title)}>{value.title}</li>
+                                onClick={() => this.props.addServiceId(value.id, value.title, value.price)}>{value.title}</li>
                         </Link>
                     )
                 })
