@@ -73,7 +73,7 @@ class AppointmentMainPage extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="amp-container">
                 <div className="center-align">Онлайн-запись</div>
                     <ChoiceItem url={"barber"} icon={"people"} title={"Барбер"} descr={checkBarber()}/>
                     <ChoiceItem url={"service"} icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
