@@ -1,16 +1,18 @@
-export function addBarberId(barberId, barberName) {
+export function addBarber(barber) {
     return {
         type: 'ADD_BARBER_ID',
-        payload: {barberId, barberName}
+        payload: barber
     }
 }
+//barberId, barberName
 
-export function addServiceId(serviceId, serviceTitle, servicePrice) {
+export function addService(service) {
     return {
         type: 'ADD_SERVICE_ID',
-        payload: {serviceId, serviceTitle, servicePrice}
+        payload: service
     }
 }
+//serviceId, serviceTitle, servicePrice
 
 export function addDate(date) {
     return {

@@ -42,10 +42,10 @@ const checkDate = (date) => {
 function OrderDetails(props) {
     return (
         <>
-            <div>{props.service.serviceTitle}</div>
-            <div>{props.barber.barberName}</div>
+            <div>{props.service.title}</div>
+            <div>{props.barber.name}</div>
             <div>{checkDate(props.date)}</div>
-            <div>{props.service.servicePrice} р.</div>
+            <div>{props.service.price} р.</div>
         </>
     )
 }

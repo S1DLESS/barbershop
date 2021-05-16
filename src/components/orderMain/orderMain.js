@@ -12,8 +12,8 @@ class OrderMain extends Component {
                 phone: '',
                 email: '',
                 comment: '',
-                barberId: this.props.barber.barberId,
-                serviceId: this.props.service.serviceId,
+                barberId: this.props.barber.id,
+                serviceId: this.props.service.id,
                 date: this.props.date
             },
             loading: false,

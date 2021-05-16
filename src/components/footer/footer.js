@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import './header.css';
+import './footer.css';
 
 
-export default class Header extends Component {
+export default class Footer extends Component {
 
     constructor(props){
         super(props)

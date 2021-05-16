@@ -9,10 +9,6 @@ class OrderPage extends Component {
         return (
             <>
                 <h1>OrderPage</h1>
-                <ul className="tabs tabs-fixed-width tab-demo z-depth-1">
-                    <li className="tab"><a href="#">Записаться</a></li>
-                    <li className="tab"><a href="#">Детали заказа</a></li>
-                </ul>
                 <OrderMain barber={this.props.barber}
                            service={this.props.service}
                            date={this.props.date}/>

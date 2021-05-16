@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DB from '../../../service/service';
-import {addBarberId} from '../../../redux/actions';
+import {addBarber} from '../../../redux/actions';
 
 
 class AppointmentBarberPage extends Component {
@@ -14,7 +14,15 @@ class AppointmentBarberPage extends Component {
 
     componentDidMount() {
         this.db.getAllBarbers()
-            .then(barberList => this.setState({barberList}));
+            .then(barberList => {
+                if (this.props.service) {
+                    this.setState({
+                        barberList: barberList.filter(element => this.props.service.barber.includes(element.id))
+                    })
+                } else {
+                    this.setState({barberList})
+                }
+            });
     }
 
     renderItems(arr) {
@@ -25,7 +33,7 @@ class AppointmentBarberPage extends Component {
                         <Link to='/appointment' key={value.id}>
                             <li className="collection-item"
                                 key={value.id}
-                                onClick={() => this.props.addBarberId(value.id, value.name)}>{value.name}</li>
+                                onClick={() => this.props.addBarber(value)}>{value.name}</li>
                         </Link>
                     )
                 })
@@ -53,7 +61,13 @@ class AppointmentBarberPage extends Component {
 }
 
 const mapDispatchToProps = {
-    addBarberId
+    addBarber
 }
 
-export default connect(null, mapDispatchToProps)(AppointmentBarberPage)
+const mapStateToProps = state => {
+    return {
+        service: state.selectedService
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppointmentBarberPage)

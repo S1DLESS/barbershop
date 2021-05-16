@@ -20,7 +20,7 @@ class AppointmentMainPage extends Component {
 
         const checkBarber = () => {
             if (this.props.barber !== null) {
-                return this.props.barber.barberName
+                return this.props.barber.name
             } else {
                 return ""
             }
@@ -28,7 +28,7 @@ class AppointmentMainPage extends Component {
 
         const checkService = () => {
             if (this.props.service !== null) {
-                return this.props.service.serviceTitle
+                return this.props.service.title
             } else {
                 return ""
             }

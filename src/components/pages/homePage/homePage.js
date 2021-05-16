@@ -10,6 +10,13 @@ import barber3 from './barber3.webp';
 import barber4 from './barber4.webp';
 import barber5 from './barber5.webp';
 import barber6 from './barber6.webp';
+import article1 from './article1.webp';
+import article2 from './article2.webp';
+import article3 from './article3.webp';
+import news1 from './news1.webp';
+import news2 from './news2.webp';
+import news3 from './news3.webp';
+import Footer from '../../footer/footer';
 
 
 export default function HomePage() {
@@ -17,7 +24,7 @@ export default function HomePage() {
         <>
             <Header/>
             <div className="container">
-                <div className="row hp-row-mt">
+                <div className="row hp-row-mt" id="contacts">
                     <div className="col s4 center">
                         <i className="medium material-icons">location_on</i>
                         <div className="flow-text">Молодечно</div>
@@ -54,7 +61,7 @@ export default function HomePage() {
                     A1 +37529-6-200-220<br/>
                     Viber Telegram
                 </div>
-                <div className="divider"></div>
+                <div className="divider" id="services"></div>
                 <div className="section flow-text">
                     <span>Мужская стрижка</span>
                     <span className="right">20 руб.</span>
@@ -98,7 +105,7 @@ export default function HomePage() {
                     <span>Black Mask (Чёрная Маска)</span>
                     <span className="right">20 руб.</span>
                 </div>
-                <h2 className="center">Барберы</h2>
+                <h2 className="center" id="barbers">Барберы</h2>
                 <div className="row">
                     <div className="col s4">
                         <div className="card">
@@ -169,10 +176,86 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-                <h2 className="center">Статьи</h2>
-                <h2 className="center">Новости</h2>
-                <h2 className="center">Отзывы</h2>
+                <h2 className="center" id="articles">Статьи</h2>
+                <div className="row">
+                    <div className="col s1 valign-wrapper">
+                        <i class="large material-icons">chevron_left</i>
+                    </div>
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={article1} alt='article1'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Топ-10 ошибок клиентов барбершопа</b></p><br/>
+                                <p>Мы расскажем о топ 10 ошибках, которые можно избежать при посещении любого барбершопа. Очень важно дочитать эту статью до конца, чтобы, приходя в барбершоп, вы могли по-настоящему отдохнуть, расслабиться и не заморачивались о том, что что-то нельзя или вы что-то не знаете.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={article2} alt='article2'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Немного о стайлингах</b></p><br/>
+                                <p>Очень частый вопрос от наших клиентов: «Как понять, нужен ли стайлинг для волос?» Мы разберемся, какие бывают виды стайлинга и как ими пользоваться. Стайлинги для волос на голове можно условно разделить на несколько категорий:</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={article3} alt='article3'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Сколько можно заработать на барбершопах?</b></p><br/>
+                                <p>Насколько это выгодно? Почему нужно открываться именно сейчас. Это выгодно. В среднем мужчины стригутся один раз в месяц, но тенденция такова, что сейчас они начали гораздо чаще ходить в барбершопы или в парикмахерские. Например, в Европе и в Америке мужчины стригутся раз в две недели. Скоро это дойдет и до России.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s1">
+                        <i class="large material-icons">chevron_right</i>
+                    </div>
+                </div>
+                <h2 className="center" id="news">Новости</h2>
+                <div className="row">
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={news1} alt='news1'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Заходи в наш Инстаграм</b></p><br/>
+                                <p>Смотри новые фото, записывайся к своему барберу. Только лучшие барберы, только лучшая косметика, только лучшая атмосфера</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={news2} alt='news2'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Барбершоп с заботой о вашей бороде</b></p><br/>
+                                <p>Всё это можно приобрести в нашем барбершопе по очень приятным ценам</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s3">
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={news3} alt='news3'/>
+                            </div>
+                            <div class="card-content">
+                                <p><b>Barbershop ищет тебя!</b></p><br/>
+                                <p>Ищем моделей для нашего портфолио. Нужны разные типажи без возрастных ограничений!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <Footer/>
         </>
     )
 }
