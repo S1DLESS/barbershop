@@ -10,7 +10,7 @@ class TimePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mstLoaded: false
+            asyncDataLoaded: false
         }
     }
     db = new DB();
@@ -40,30 +40,30 @@ class TimePage extends Component {
         return arr
     }
 
-    getMinServiceTime() {
+    getData() {
         this.db.getAllServices().then(res => {
             // res.map(value => value.time).sort()[0]
             console.log(res)
-            this.setState({mstLoaded: true})
+            this.db.getAllPosts().then(res => {
+                console.log(res)
+                this.setState({asyncDataLoaded: true})
+            })
         })
     }
 
     
     render() {
 
-        if (this.state.mstLoaded) {
+        if (!this.state.asyncDataLoaded) {
+            this.getData()
+        }
+
+        if (this.state.asyncDataLoaded) {
             return (
                 <>
                     <h1>Время</h1>
                     {this.renderButtons()}
                 </>
-            )
-        } else {
-            this.getMinServiceTime()
-            return (
-                <div className="progress">
-                    <div className="indeterminate"></div>
-                </div>
             )
         }
     }

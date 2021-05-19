@@ -232,7 +232,16 @@
       ]
     }
   ],
-  "requests": [
-    
+  "posts": [
+    {
+      "name": "Alex",
+      "phone": "123",
+      "email": "baxeci4844@nic58.com",
+      "comment": "e",
+      "barberId": 4,
+      "serviceId": 10,
+      "date": 1621528200000,
+      "id": 1
+    }
   ]
 }

@@ -4,7 +4,7 @@ export default class DB {
     }
 
     postData = async (data) => {
-        const res = await fetch(`${this._apiBase}/requests`, {
+        const res = await fetch(`${this._apiBase}/posts`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -46,6 +46,11 @@ export default class DB {
         }
     }
 
+    getAllPosts = async () => {
+        const res = await this.getData('/posts');
+        return res.map(this._transformPost.bind(this));
+    }
+
     _transformBarber(barber) {
         return {
             id: barber.id,
@@ -62,6 +67,18 @@ export default class DB {
             price: service.price,
             description: service.description,
             barber: service.barber
+        }
+    }
+
+    _transformPost(post) {
+        return {
+            id: post.id,
+            phone: post.phone,
+            email: post.email,
+            comment: post.comment,
+            barberId: post.barberId,
+            serviceId: post.serviceId,
+            date: post.date
         }
     }
 }
