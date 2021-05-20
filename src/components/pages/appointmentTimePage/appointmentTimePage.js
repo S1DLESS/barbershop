@@ -31,23 +31,30 @@ class TimePage extends Component {
               interval = 900000;
     
         for (let i = startTime; i <= endTime - minServiceTime; i += interval) {
-            if (this.state.unavailableTime.some(value => i >= value.startTime && i < value.endTime)) {
-                continue
+            if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime) || endTime - i <= this.props.service.time - 1) {
+                continue;
+            } else {
+                arr.push(
+                    <Link to='/appointment' key={i}>
+                        <button className='btn'
+                                key={i}
+                                onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
+                    </Link>
+                )
             }
-
-            arr.push(
-                <Link to='/appointment' key={i}>
-                    <button className='btn'
-                            key={i}
-                            onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
-                </Link>
-            )
         }
-        return arr
+
+        if (arr.length) {
+            return arr
+        } else {
+            return 'Извините, на сегодня времени нет!'
+        }
     }
 
     componentDidMount() {
-        this.db.getTimePageData(this.props.barber.id, this.props.service.id, this.props.date)
+        this.db.getTimePageData(this.props.barber ? this.props.barber.id : null,
+                                this.props.service ? this.props.service.id : null,
+                                this.props.date)
             .then(res => {
                 this.setState({
                     minServiceTime: res.minServiceTime,
@@ -57,7 +64,6 @@ class TimePage extends Component {
     }
     
     render() {
-        console.log(this.state)
 
         if (!this.state.minServiceTime) {
             return <div>Loading...</div>
@@ -65,7 +71,7 @@ class TimePage extends Component {
             return (
                 <>
                     <h1>Время</h1>
-                    {this.renderButtons()}
+                    <div>{this.renderButtons()}</div>
                 </>
             )
         }

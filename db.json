@@ -292,6 +292,16 @@
       "serviceId": 1,
       "date": 1621612800000,
       "id": 6
+    },
+    {
+      "name": "2",
+      "phone": "3",
+      "email": "4",
+      "comment": "5",
+      "barberId": 4,
+      "serviceId": 1,
+      "date": 1621598400000,
+      "id": 7
     }
   ]
 }
