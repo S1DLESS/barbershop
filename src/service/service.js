@@ -46,9 +46,29 @@ export default class DB {
         }
     }
 
-    getAllPosts = async () => {
+    getTimePageData = async (barberId, serviceId, date) => {
         const res = await this.getData('/posts');
-        return res.map(this._transformPost.bind(this));
+        const posts = res.map(this._transformPost.bind(this));
+
+        const filterPosts = posts.filter(element => {
+           const a = element.date - Date.parse(date)
+           return element.barberId === barberId && (a < 86400000 && a > 0)
+        })
+
+        const allServices = await this.getAllServices()
+
+        let unavailableTime = []
+        filterPosts.forEach((value, id) => {
+            unavailableTime[id] = {
+                startTime: value.date - allServices.find(element => element.id === serviceId).time,
+                endTime: value.date + allServices.find(element => element.id === value.serviceId).time
+            }
+        })
+
+        return {
+            minServiceTime: allServices.map(value => value.time).sort()[0],
+            unavailableTime
+        }
     }
 
     _transformBarber(barber) {

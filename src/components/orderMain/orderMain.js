@@ -52,14 +52,14 @@ class OrderMain extends Component {
 
         if (this.state.loading) {
             return (
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue-only">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+                <div className="preloader-wrapper big active">
+                    <div className="spinner-layer spinner-blue-only">
+                    <div className="circle-clipper left">
+                        <div className="circle"></div>
+                    </div><div className="gap-patch">
+                        <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                     </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ class OrderMain extends Component {
         if (this.state.error) {
             return (
                 <div>
-                   <i class="large material-icons">close</i>
+                   <i className="large material-icons">close</i>
                     <h3>Ошибка!</h3>
                     <h4>Что-то пошло не так...</h4>
                 </div>
@@ -79,7 +79,7 @@ class OrderMain extends Component {
         if (this.state.isPosted) {
             return (
                 <div>
-                    <i class="large material-icons">done</i>
+                    <i className="large material-icons">done</i>
                     <h3>Вы записаны!</h3>
                 </div>
             )

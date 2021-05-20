@@ -10,10 +10,12 @@ class TimePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            asyncDataLoaded: false
+            minServiceTime: null,
+            unavailableTime: {}
         }
+        this.db = new DB();
     }
-    db = new DB();
+    
 
     formatTime(ms) {
         const hours = Math.floor(ms/1000/60/60)
@@ -25,10 +27,14 @@ class TimePage extends Component {
         let arr = [];
         const startTime = 32400000,
               endTime = 75600000,
-              minServiceTime = 1800000,
+              minServiceTime = this.state.minServiceTime,
               interval = 900000;
     
         for (let i = startTime; i <= endTime - minServiceTime; i += interval) {
+            if (this.state.unavailableTime.some(value => i >= value.startTime && i < value.endTime)) {
+                continue
+            }
+
             arr.push(
                 <Link to='/appointment' key={i}>
                     <button className='btn'
@@ -40,25 +46,22 @@ class TimePage extends Component {
         return arr
     }
 
-    getData() {
-        this.db.getAllServices().then(res => {
-            // res.map(value => value.time).sort()[0]
-            console.log(res)
-            this.db.getAllPosts().then(res => {
-                console.log(res)
-                this.setState({asyncDataLoaded: true})
+    componentDidMount() {
+        this.db.getTimePageData(this.props.barber.id, this.props.service.id, this.props.date)
+            .then(res => {
+                this.setState({
+                    minServiceTime: res.minServiceTime,
+                    unavailableTime: res.unavailableTime
+                })
             })
-        })
     }
-
     
     render() {
+        console.log(this.state)
 
-        if (!this.state.asyncDataLoaded) {
-            this.getData()
-        }
-
-        if (this.state.asyncDataLoaded) {
+        if (!this.state.minServiceTime) {
+            return <div>Loading...</div>
+        } else {
             return (
                 <>
                     <h1>Время</h1>
@@ -71,6 +74,8 @@ class TimePage extends Component {
 
 const mapStateToProps = state => {
     return {
+        barber: state.selectedBarber,
+        service: state.selectedService,
         date: state.selectedDate
     }
 }
