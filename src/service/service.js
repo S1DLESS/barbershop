@@ -56,23 +56,57 @@ export default class DB {
 
         let unavailableTime = []
 
+
         if (!barberId && !serviceId) {
-            const bsFilterPosts = posts.filter(element => {
-                const a = element.date - Date.parse(date)
-                return a < 86400000 && a > 0
-            })
 
-            // bsFilterPosts.forEach((value, id) => {
-            //     unavailableTime[id] = {
+            const allBarbers = await this.getAllBarbers()
+            const maxIdBarber = allBarbers.sort(function(a,b) {
+                if (a.id > b.id) {
+                    return -1
+                }
+                if (a.id < b.id) {
+                    return 1
+                }
+                return 0
+            })[0].id
 
-            //     }
-            // })
+            let ut = []
+            for (let i = 1; i <= maxIdBarber; i++) {
+                const f = posts.filter(element => {
+                    const a = element.date - Date.parse(date)
+                    return element.barberId === i && (a < 86400000 && a > 0)
+                })
+                if (f.length) {
+                    let ut2 = []
+                    f.forEach((value, id) => {
+                        ut2[id] = {
+                            startTime: value.date - Date.parse(new Date(value.date).toDateString()),
+                            endTime: (value.date + allServices.find(element => element.id === value.serviceId).time) - Date.parse(new Date(value.date).toDateString())
+                        }
+                    })
+                    ut.push(ut2)
+                }
+            }
+
+            if (ut.length) {
+                for (let i = 32400000; i <= 73800000; i += 900000) {
+                    
+                }
+            } else {
+                //[ [{...}, {...}], [...], ... ]
+                return {
+                    minServiceTime,
+                    unavailableTime
+                }
+            }
+            
             
             return {
                 minServiceTime,
-                unavailableTime: []
+                unavailableTime
             }
         }
+
 
         if (barberId && !serviceId) {
             return {
@@ -81,12 +115,14 @@ export default class DB {
             }
         }
 
+
         if (!barberId && serviceId) {
             return {
                 minServiceTime,
                 unavailableTime: []
             }
         }
+
 
         if (barberId && serviceId)  {
             const filterPosts = posts.filter(element => {

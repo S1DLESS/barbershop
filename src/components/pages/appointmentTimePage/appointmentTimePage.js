@@ -31,16 +31,30 @@ class TimePage extends Component {
               interval = 900000;
     
         for (let i = startTime; i <= endTime - minServiceTime; i += interval) {
-            if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime) || endTime - i <= this.props.service.time - 1) {
-                continue;
+            if (!this.props.service) {
+                if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime)) {
+                    continue;
+                } else {
+                    arr.push(
+                        <Link to='/appointment' key={i}>
+                            <button className='btn'
+                                    key={i}
+                                    onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
+                        </Link>
+                    )
+                }
             } else {
-                arr.push(
-                    <Link to='/appointment' key={i}>
-                        <button className='btn'
-                                key={i}
-                                onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
-                    </Link>
-                )
+                if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime) || endTime - i <= this.props.service.time - 1) {
+                    continue;
+                } else {
+                    arr.push(
+                        <Link to='/appointment' key={i}>
+                            <button className='btn'
+                                    key={i}
+                                    onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
+                        </Link>
+                    )
+                }
             }
         }
 
