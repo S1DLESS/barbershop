@@ -9,7 +9,6 @@ export default class Header extends Component {
         super(props)
         this.state = {anchor: ''};
         this.handleClick = this.handleClick.bind(this);
-        this.Anchorgotop = this.Anchorgotop.bind(this);
     }
     static defaultProps = {};
     static propTypes = {};
@@ -25,16 +24,13 @@ export default class Header extends Component {
            anchorEle.scrollIntoView({behavior: 'smooth'});
         }
     }
-    Anchorgotop(){
-        document.body.scrollIntoView({behavior: 'smooth'});
-    }
 
     render() {
         this.AnchorScorll()
         return (
             <nav>
                 <div className="nav-wrapper brown">
-                    <a href="#" className="brand-logo">Barbershop</a>
+                    <a href="/" className="brand-logo">Barbershop</a>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li onClick={()=>{this.handleClick("services")}}><a>Услуги</a></li>
                         <li onClick={()=>{this.handleClick("barbers")}}><a>Барберы</a></li>

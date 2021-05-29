@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DB from '../../../service/service';
 import {addService} from '../../../redux/actions';
+import './appointmentServicePage.css';
 
 
 class AppointmentServicePage extends Component {
@@ -25,15 +26,29 @@ class AppointmentServicePage extends Component {
             });
     }
 
+    formatTime(ms) {
+        const hours = Math.floor(ms/1000/60/60)
+        const minutes = Math.floor(ms/(1000*60)%60)
+        if (ms < 3600000) {
+            return `${minutes} мин.`
+        } else if (ms % 3600000 === 0) {
+            return `${hours} ч.`
+        } else if (ms % 3600000 !== 0) {
+            return `${hours} ч. ${minutes} мин.`
+        }
+    }
+
     renderItems(arr) {
         if (arr) {
             return (
                 arr.map(value => {
                     return (
-                        <Link to='/appointment' key={value.id}>
-                            <li className="collection-item"
-                                key={value.id}
-                                onClick={() => this.props.addService(value)}>{value.title}</li>
+                        <Link to='/appointment'
+                              key={value.id}
+                              className="collection-item"
+                              onClick={() => this.props.addService(value)}>
+                            <span className="badge">{this.formatTime(value.time)}</span>
+                            {value.title}
                         </Link>
                     )
                 })
@@ -46,16 +61,24 @@ class AppointmentServicePage extends Component {
 
         if (!serviceList) {
             return (
-                <div className="progress">
-                    <div className="indeterminate"></div>
-                </div>
+                <>
+                    <Link to="/appointment" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                    <h5 className="center-align">Услуга</h5>
+                    <div className="progress asp-container">
+                        <div className="indeterminate"></div>
+                    </div>
+                </>
             )
         }
 
         return (
-            <ul className="collection">
-                {this.renderItems(serviceList)}
-            </ul>
+            <>
+                <Link to="/appointment" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                <h5 className="center-align">Услуга</h5>
+                <div className="collection asp-container">
+                    {this.renderItems(serviceList)}
+                </div>
+            </>
         )
     }
 }

@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {deleteDate} from '../../../redux/actions';
 import {Link} from 'react-router-dom';
 import ChoiceItem from '../../choiceItem/choiceItem';
 import './appointmentMainPage.css';
 
 class AppointmentMainPage extends Component {
+
+    
     
     renderInitButton() {
         if (this.props.barber && this.props.service && this.props.date) {
@@ -13,6 +16,20 @@ class AppointmentMainPage extends Component {
                     <button className="btn">Оформить визит</button>
                 </Link>
             )
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.date && typeof(this.props.date) === 'object') {
+            if (this.props.date.getHours() === 0) {
+                this.props.deleteDate()
+            }
+        }
+    }
+
+    componentDidUpdate() {
+        if (!this.props.barber || !this.props.service) {
+            this.props.deleteDate()
         }
     }
 
@@ -40,7 +57,7 @@ class AppointmentMainPage extends Component {
                 year = new Date(this.props.date).getFullYear(),
                 hours = new Date(this.props.date).getHours(),
                 minutes = new Date(this.props.date).getMinutes();
-
+    
             if (day < 10) {
                 day = `0${day}`
             }
@@ -48,7 +65,7 @@ class AppointmentMainPage extends Component {
             if (minutes < 10) {
                 minutes = `0${minutes}`
             }
-
+    
             switch (month) {
                 case 1: month = 'января'; break
                 case 2: month = 'февраля'; break
@@ -64,7 +81,7 @@ class AppointmentMainPage extends Component {
                 case 12: month = 'декабря'; break
                 default: month = ''
             }
-
+    
             if (this.props.date !== "") {
                 return `${day} ${month} ${year} в ${hours}:${minutes}`
             } else {
@@ -73,13 +90,18 @@ class AppointmentMainPage extends Component {
         }
 
         return (
-            <div className="amp-container">
-                <div className="center-align">Онлайн-запись</div>
-                    <ChoiceItem url={"barber"} icon={"people"} title={"Барбер"} descr={checkBarber()}/>
-                    <ChoiceItem url={"service"} icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
-                    <ChoiceItem url={"date"} icon={"date_range"} title={"Дата и время"} descr={checkDate()}/>
-                {this.renderInitButton()}
-            </div>
+            <>
+                <Link to="/" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                <div className="amp-container">
+                    <h4 className="center-align">Онлайн-запись</h4>
+                        <ChoiceItem url={"barber"} icon={"people"} title={"Барбер"} descr={checkBarber()}/>
+                        <ChoiceItem url={"service"} icon={"content_cut"} title={"Услуга"} descr={checkService()}/>
+                        {(this.props.barber && this.props.service)
+                        ? <ChoiceItem url={"date"} icon={"date_range"} title={"Дата и время"} descr={checkDate()}/>
+                        : null}
+                    {this.renderInitButton()}
+                </div>
+            </>
         )
     }
 }
@@ -92,4 +114,8 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(AppointmentMainPage)
+const mapDispatchToProps = {
+    deleteDate
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppointmentMainPage)

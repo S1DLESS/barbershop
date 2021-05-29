@@ -88,27 +88,27 @@ class OrderMain extends Component {
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
-                    <label for="POST-name">Имя:</label>
+                    <label htmlFor="POST-name">Имя:</label>
                     <input id="POST-name"
                            value={this.state.data.name}
                            onChange={this.changeHandler}
                            name="name"/>
-                    <label for="POST-phone">Телефон:</label>
+                    <label htmlFor="POST-phone">Телефон:</label>
                     <input id="POST-phone"
                            value={this.state.data.phone}
                            onChange={this.changeHandler}
                            name="phone"/>
-                    <label for="POST-email">E-mail:</label>
+                    <label htmlFor="POST-email">E-mail:</label>
                     <input id="POST-email"
                            value={this.state.data.email}
                            onChange={this.changeHandler}
                            name="email"/>
-                    <label for="POST-comment">Комментарий:</label>
+                    <label htmlFor="POST-comment">Комментарий:</label>
                     <input id="POST-comment"
                            value={this.state.data.comment}
                            onChange={this.changeHandler}
                            name="comment"/>
-                    <button className="btn"
+                    <button className="btn center"
                             type="submit">Записаться</button>
                 </form>
             </div>

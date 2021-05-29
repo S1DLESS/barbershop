@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addDate} from '../../../redux/actions';
 import DB from '../../../service/service';
+import './appointmentTimePage.css';
 
 
 class TimePage extends Component {
@@ -31,30 +32,22 @@ class TimePage extends Component {
               interval = 900000;
     
         for (let i = startTime; i <= endTime - minServiceTime; i += interval) {
-            if (!this.props.service) {
-                if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime)) {
-                    continue;
-                } else {
-                    arr.push(
-                        <Link to='/appointment' key={i}>
-                            <button className='btn'
-                                    key={i}
-                                    onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
-                        </Link>
-                    )
-                }
+            if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime) || endTime - i <= this.props.service.time - 1) {
+                continue;
             } else {
-                if (this.state.unavailableTime.some(value => i > value.startTime && i < value.endTime) || endTime - i <= this.props.service.time - 1) {
-                    continue;
-                } else {
-                    arr.push(
-                        <Link to='/appointment' key={i}>
-                            <button className='btn'
-                                    key={i}
-                                    onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
-                        </Link>
-                    )
-                }
+                arr.push(
+                    <Link to='/appointment'
+                          key={i}
+                          className='btn atp-btn'
+                          onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}
+                    </Link>
+
+                    // <Link to='/appointment' key={i}>
+                    //     <button className='btn'
+                    //             key={i}
+                    //             onClick={() => this.props.addDate(this.props.date.setMilliseconds(i))}>{this.formatTime(i)}</button>
+                    // </Link>
+                )
             }
         }
 
@@ -80,12 +73,20 @@ class TimePage extends Component {
     render() {
 
         if (!this.state.minServiceTime) {
-            return <div>Loading...</div>
-        } else {
             return (
                 <>
-                    <h1>Время</h1>
-                    <div>{this.renderButtons()}</div>
+                    <Link to="/appointment/date" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                    <h5 className="center-align">Время</h5>
+                    <div className="progress abp-container">
+                        <div className="indeterminate"></div>
+                    </div>
+                </>
+            )} else {
+            return (
+                <>
+                    <Link to="/appointment/date" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                    <h5 className="center-align">Время</h5>
+                    <div className="row atp-container">{this.renderButtons()}</div>
                 </>
             )
         }

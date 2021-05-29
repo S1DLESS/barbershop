@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DB from '../../../service/service';
 import {addBarber} from '../../../redux/actions';
+import './appointmentBarberPage.css'
 
 
 class AppointmentBarberPage extends Component {
@@ -30,11 +31,10 @@ class AppointmentBarberPage extends Component {
             return (
                 arr.map(value => {
                     return (
-                        <Link to='/appointment' key={value.id}>
-                            <li className="collection-item"
-                                key={value.id}
-                                onClick={() => this.props.addBarber(value)}>{value.name}</li>
-                        </Link>
+                        <Link to='/appointment'
+                              key={value.id}
+                              className="collection-item"
+                              onClick={() => this.props.addBarber(value)}>{value.name}</Link>
                     )
                 })
             )
@@ -46,16 +46,24 @@ class AppointmentBarberPage extends Component {
 
         if (!barberList) {
             return (
-                <div className="progress">
-                    <div className="indeterminate"></div>
-                </div>
+                <>
+                    <Link to="/appointment" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                    <h5 className="center-align">Барбер</h5>
+                    <div className="progress abp-container">
+                        <div className="indeterminate"></div>
+                    </div>
+                </>
             )
         }
 
         return (
-            <ul className="collection">
-                {this.renderItems(barberList)}
-            </ul>
+            <>
+                <Link to="/appointment" className="btn"><i className="material-icons left">arrow_back</i>Назад</Link>
+                <h5 className="center-align">Барбер</h5>
+                <div className="collection abp-container">
+                    {this.renderItems(barberList)}
+                </div>
+            </>
         )
     }
 }

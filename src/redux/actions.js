@@ -4,7 +4,6 @@ export function addBarber(barber) {
         payload: barber
     }
 }
-//barberId, barberName
 
 export function addService(service) {
     return {
@@ -12,7 +11,6 @@ export function addService(service) {
         payload: service
     }
 }
-//serviceId, serviceTitle, servicePrice
 
 export function addDate(date) {
     return {
