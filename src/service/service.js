@@ -1,13 +1,14 @@
 export default class DB {
     constructor() {
-        this._apiBase = 'https://my-json-server.typicode.com/S1DLESS/barbershop';
+        this._apiBase = 'http://localhost:5000';
+        // https://my-json-server.typicode.com/S1DLESS/barbershop
     }
 
     postData = async (data) => {
-        const res = await fetch(`${this._apiBase}/posts`, {
+        const res = await fetch(`${this._apiBase}/post`, {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
@@ -23,25 +24,25 @@ export default class DB {
     }
 
     getAllBarbers = async () => {
-        const res = await this.getData('/barbers');
+        const res = await this.getData('/barber');
         return res.map(this._transformBarber.bind(this));
     }
 
     getBarber = async (id) => {
         if (id !== null) {
-            const barber = await this.getData(`/barbers/${id}`);
+            const barber = await this.getData(`/barber/${id}`);
             return this._transformBarber(barber);
         }
     }
 
     getAllServices = async () => {
-        const res = await this.getData('/services');
+        const res = await this.getData('/service');
         return res.map(this._transformService.bind(this));
     }
 
     getService = async (id) => {
         if (id !== null) {
-            const service = await this.getData(`/services/${id}`);
+            const service = await this.getData(`/service/${id}`);
             return this._transformService(service);
         }
     }
@@ -51,7 +52,7 @@ export default class DB {
         const allServices = await this.getAllServices()
         const minServiceTime = allServices.map(value => value.time).sort()[0]
 
-        const res = await this.getData('/posts');
+        const res = await this.getData('/post');
         const posts = res.map(this._transformPost.bind(this));
 
         let unavailableTime = []
@@ -77,15 +78,16 @@ export default class DB {
 
     _transformBarber(barber) {
         return {
-            id: barber.id,
+            id: barber._id,
             name: barber.name,
-            description: barber.description
+            description: barber.description,
+            img: barber.img
         }
     }
 
     _transformService(service) {
         return {
-            id: service.id,
+            id: service._id,
             title: service.title,
             time: service.time,
             price: service.price,
@@ -96,7 +98,7 @@ export default class DB {
 
     _transformPost(post) {
         return {
-            id: post.id,
+            id: post._id,
             phone: post.phone,
             email: post.email,
             comment: post.comment,

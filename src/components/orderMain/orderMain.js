@@ -26,7 +26,6 @@ class OrderMain extends Component {
 
     changeHandler = e => {
         this.setState({data: {...this.state.data, [e.target.name]: e.target.value}})
-        console.log(this.state)
     }
 
     responseHandler(res) {
