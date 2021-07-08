@@ -1,9 +1,5 @@
 import React from 'react';
 
-import news1 from '../../img/news/1.webp';
-import news2 from '../../img/news/2.webp';
-import news3 from '../../img/news/3.webp';
-
 
 export default function News() {
     return (
@@ -11,7 +7,7 @@ export default function News() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={news1} alt='news1'/>
+                        <img src={`http://localhost:5000/static/news/1.webp`} alt='news1'/>
                     </div>
                     <div className="card-content">
                         <p><b>Заходи в наш Инстаграм</b></p><br/>
@@ -22,7 +18,7 @@ export default function News() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={news2} alt='news2'/>
+                        <img src={`http://localhost:5000/static/news/2.webp`} alt='news2'/>
                     </div>
                     <div className="card-content">
                         <p><b>Барбершоп с заботой о вашей бороде</b></p><br/>
@@ -33,7 +29,7 @@ export default function News() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={news3} alt='news3'/>
+                        <img src={`http://localhost:5000/static/news/3.webp`} alt='news3'/>
                     </div>
                     <div className="card-content">
                         <p><b>Barbershop ищет тебя!</b></p><br/>

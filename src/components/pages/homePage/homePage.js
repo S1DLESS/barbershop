@@ -5,11 +5,7 @@ import ServiceList from '../../serviceList/serviceList';
 import BarberList from '../../barberList/barberList';
 import Articles from '../../articles/articles';
 import News from '../../news/news';
-
 import './homePage.css';
-import img1 from '../../../img/home/1.jpg';
-import img2 from '../../../img/home/2.jpg';
-import img3 from '../../../img/home/3.jpg';
 
 
 export default function HomePage() {
@@ -35,9 +31,9 @@ export default function HomePage() {
                     </div>
                 </div>
                 <div className="row">
-                    <img className="col s4" src={img1} alt="1"></img>
-                    <img className="col s4" src={img2} alt="2"></img>
-                    <img className="col s4" src={img3} alt="3"></img>
+                    <img className="col s4" src={`http://localhost:5000/static/homepage/1.jpg`} alt="1"></img>
+                    <img className="col s4" src={`http://localhost:5000/static/homepage/2.jpg`} alt="2"></img>
+                    <img className="col s4" src={`http://localhost:5000/static/homepage/3.jpg`} alt="3"></img>
                 </div>
                 <div className="row center flow-text">
                     Barbershop<br/>

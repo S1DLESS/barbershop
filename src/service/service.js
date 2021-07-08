@@ -1,7 +1,7 @@
 export default class DB {
+
     constructor() {
         this._apiBase = 'http://localhost:5000';
-        // https://my-json-server.typicode.com/S1DLESS/barbershop
     }
 
     postData = async (data) => {

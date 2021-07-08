@@ -1,9 +1,5 @@
 import React from 'react';
 
-import article1 from '../../img/articles/1.webp';
-import article2 from '../../img/articles/2.webp';
-import article3 from '../../img/articles/3.webp';
-
 
 export default function Articles() {
     return (
@@ -11,7 +7,7 @@ export default function Articles() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={article1} alt='article1'/>
+                        <img src={`http://localhost:5000/static/articles/1.webp`} alt='article1'/>
                     </div>
                     <div className="card-content">
                         <p><b>Топ-10 ошибок клиентов барбершопа</b></p><br/>
@@ -22,7 +18,7 @@ export default function Articles() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={article2} alt='article2'/>
+                        <img src={`http://localhost:5000/static/articles/2.webp`} alt='article2'/>
                     </div>
                     <div className="card-content">
                         <p><b>Немного о стайлингах</b></p><br/>
@@ -33,7 +29,7 @@ export default function Articles() {
             <div className="col s3">
                 <div className="card">
                     <div className="card-image">
-                        <img src={article3} alt='article3'/>
+                        <img src={`http://localhost:5000/static/articles/3.webp`} alt='article3'/>
                     </div>
                     <div className="card-content">
                         <p><b>Сколько можно заработать на барбершопах?</b></p><br/>

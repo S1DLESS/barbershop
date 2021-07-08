@@ -9,6 +9,7 @@ const dbUrl = 'mongodb+srv://sidless:3KiJ4lLXLTwJlfFl@cluster0.mhqqm.mongodb.net
 const app = express()
 
 app.use(cors())
+app.use('/static', express.static('static'))
 app.use(express.json())
 app.use('/', router)
 
