@@ -13,10 +13,6 @@ app.use('/static', express.static('static'))
 app.use(express.json())
 app.use('/', router)
 
-app.use('/', (req, res) => {
-    res.send('Barbershop-API')
-})
-
 const start = async () => {
     try {
         await connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
