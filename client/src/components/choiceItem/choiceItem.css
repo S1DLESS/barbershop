@@ -1,0 +1,25 @@
+.container-choiceitem {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-left-choiceitem {
+    color: #5c5c5c;
+    display: flex;
+    align-items: center;
+    flex-basis: 90%;
+}
+
+.container-left-choiceitem div:first-child {
+    margin-right: 15px;
+}
+
+.del-btn-choiceitem {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
